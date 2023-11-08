@@ -39,7 +39,7 @@ class App(tk.Tk):
 
         radius_settings = tk.Frame(tools)
         radius_settings.pack()
-        self.radius_label = ttk.Label(radius_settings, text=self.radius)
+        self.radius_label = ttk.Label(radius_settings, text=f'size: {self.radius}')
         self.radius_label.pack()
         size_bar = ttk.Scale(radius_settings, orient=HORIZONTAL, length=200, from_=1, to=10, command=self.change_radius,
                              value=self.radius)
@@ -59,6 +59,8 @@ class App(tk.Tk):
 
         file_settings = tk.Frame(control)
         file_settings.pack(side='left')
+        label = tk.Label(file_settings, text='file name')
+        label.pack()
         self.file_name = tk.Entry(file_settings)
         self.file_name.pack()
         save_button = tk.Button(file_settings, text='save file', command=self.phases_to_csv_file)
@@ -66,7 +68,7 @@ class App(tk.Tk):
 
     def change_radius(self, new_val):
         self.radius = int(float(new_val))
-        self.radius_label.config(text=self.radius)
+        self.radius_label.config(text=f'size: {self.radius}')
 
     def update_canvas(self):
         img = self.phases_to_image()
